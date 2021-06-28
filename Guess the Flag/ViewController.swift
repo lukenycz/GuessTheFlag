@@ -33,14 +33,21 @@ class ViewController: UIViewController {
     }
 
     func askQuestion(action: UIAlertAction! = nil) {
+        
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
         button1.setImage(UIImage(named: countries[0]), for: .normal)
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
-        title = countries[correctAnswer].uppercased()
+        titleAppear()
 
+    }
+    
+    func titleAppear() {
+        var correctCountry = countries[correctAnswer].uppercased()
+        title = "Pick the \(correctCountry), Your score is \(score)"
+        
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
