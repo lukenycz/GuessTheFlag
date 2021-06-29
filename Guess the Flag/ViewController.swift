@@ -31,6 +31,8 @@ class ViewController: UIViewController {
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showScore))
 
         askQuestion()
     }
@@ -74,6 +76,13 @@ class ViewController: UIViewController {
             counter = 0
             score = 0
         }
+    }
+
+    @objc func showScore() {
+        let showScore = UIAlertController(title: nil, message: "Your score is \(score)", preferredStyle: .alert)
+        showScore.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
+        showScore.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(showScore, animated: true)
     }
 }
 
