@@ -18,15 +18,7 @@ class ViewController: UIViewController {
     var correctAnswer = 0
     var counter = 0
     var wrongAnswer = " "
-    
-    class userScore: NSObject, Codable {
-        var score = 0
-        init(score: Int) {
-            self.score = score
-        }
-    }
-    var scored = [userScore]()
-    var scoreInit = userScore(score: 0)
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,36 +36,10 @@ class ViewController: UIViewController {
 
         askQuestion()
         
-        let defaults = UserDefaults.standard
-        UserDefaults.standard.setValue(score, forKey: "score")
-        let savedScore = defaults.integer(forKey: "score")
+        userDefaults.setValue(score, forKey: "score")
+        let savedScore = userDefaults.integer(forKey: "score")
         print(savedScore)
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        let defaults = UserDefaults.standard
-//
-//        UserDefaults.standard.setValue(score, forKey: "score")
-//        if let savedScore = defaults.object(forKey: "scored") as? Data {
-//            let jsonDecoder = JSONDecoder()
-//
-//            do {
-//                scored = try jsonDecoder.decode([userScore].self, from: savedScore)
-//            } catch {
-//                print("Failed to load score")
-//            }
-//        }
-//    }
-    
-//    func save() {
-//        let jsonEncoder = JSONEncoder()
-//            if let savedData = try? jsonEncoder.encode(scored) {
-//                let defaults = UserDefaults.standard
-//                defaults.set(savedData, forKey: "scored")
-//            } else {
-//                print("Failed to save score.")
-//            }
-//    }
-
     func askQuestion(action: UIAlertAction! = nil) {
         
         countries.shuffle()
@@ -114,8 +80,7 @@ class ViewController: UIViewController {
             counter = 0
             score = 0
         }
-      //  save()
-       // print("scoreinit\(score)")
+        
     }
 
     @objc func showScore() {
