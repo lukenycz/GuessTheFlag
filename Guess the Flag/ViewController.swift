@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var correctAnswer = 0
     var counter = 0
     var wrongAnswer = " "
-    let userDefaults = UserDefaults.standard
+    let defaults = UserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +36,9 @@ class ViewController: UIViewController {
 
         askQuestion()
         
-        userDefaults.setValue(score, forKey: "score")
-        let savedScore = userDefaults.integer(forKey: "score")
+        
+        defaults.set(score, forKey: "score")
+        let savedScore = defaults.data(forKey: "score")
         print(savedScore)
     }
     func askQuestion(action: UIAlertAction! = nil) {
