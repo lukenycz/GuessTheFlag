@@ -67,6 +67,13 @@ class ViewController: UIViewController {
             score -= 1
            // counter += 1
         }
+        
+        // Animation
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: [], animations: {
+            sender.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        })
+        sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+        
     
         let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
 
